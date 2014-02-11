@@ -1,3 +1,27 @@
+<?php
+
+	
+	if(isset($_POST['submit']))
+	{
+		$db = new PDO('mysql:host=localhost;dbname=phpdev', 'phpdev', 'azerty') or die();
+
+		if(isset($_POST['username']) && !empty($_POST['username']))
+		{
+			if(isset($_POST['password']) && !empty($_POST['password']) && isset($_POST['password-check']) && !empty($_POST['password-check']))
+			{
+				
+			}
+			else
+			{
+				echo '<p class="btn btn-danger">Veuillez renseigner un mot de passe et veuillez le confirmer</p>';
+			}
+		}
+		else
+		{
+			echo '<p class="btn btn-danger">Veuillez remplir le champ username !</p>';
+		}
+	}
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -18,10 +42,12 @@
 		<!--<p class="btn btn-danger"></p>-->
 		<form action="register.php" method="post">
 			<input type="text" name="username" class="form-control input-sm" placeholder="Username" /><br />
-			<input type="password" class="form-control input-sm" placeholder="Password" /><br />
-			<input type="password" class="form-control input-sm" placeholder="Password confirmation" /><br />
-			<input type="submit" class="btn btn-primary" value="S'inscrire !" />
+			<input type="password" name="password" class="form-control input-sm" placeholder="Password" /><br />
+			<input type="password" name="password-check" class="form-control input-sm" placeholder="Password confirmation" /><br />
+			<input type="submit" name="submit" class="btn btn-primary" value="S'inscrire !" />
 		</form>
 	</div>
 </body>
 </html>
+
+
