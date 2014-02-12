@@ -1,15 +1,26 @@
 <?php
 
-	
+	print_r($_POST);
+
 	if(isset($_POST['submit']))
 	{
-		$db = new PDO('mysql:host=localhost;dbname=phpdev', 'phpdev', 'azerty') or die();
-
 		if(isset($_POST['username']) && !empty($_POST['username']))
 		{
 			if(isset($_POST['password']) && !empty($_POST['password']) && isset($_POST['password-check']) && !empty($_POST['password-check']))
 			{
-				
+				if($_POST['password'] === $_POST['password-check'])
+				{
+					$db = new PDO('mysql:host=localhost;dbname=phpdev', 'phpdev', 'azerty') or die();
+					$req = $db->prepare("INSERT INTO users VALUES('', :username, :password)");
+					$req->execute(array(
+						':username' => $_POST['username'],
+						':password' => $_POST['password']
+					));
+				}
+				else
+				{
+					echo '<p class="btn btn-danger">Les deux mots de passe de correspondent pas.';
+				}
 			}
 			else
 			{
