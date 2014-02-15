@@ -1,3 +1,22 @@
+<?php
+
+	if(isset($_POST['submit'])){
+		$db = new PDO('mysql:host=localhost;dbname=phpdev', 'phpdev', 'azerty') or die();
+		$req = $db->prepare("SELECT * FROM users WHERE username = :username AND password = :password");
+		$req->execute(array(
+			':username' => $_POST['username'],
+			':password' => $_POST['password']
+		));
+		$res = $req->fetch();
+		if($res != ''){
+			// Connexion ok
+		} else {
+			// Connexion pas ok
+		}
+	}
+		
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -17,9 +36,9 @@
 		<h1>Login</h1>
 		<!--<p class="btn btn-danger"></p>-->
 		<form>
-			<input type="text" class="form-control input-sm" placeholder="Username" /><br />
-			<input type="password" class="form-control input-sm" placeholder="Password" /><br />
-			<input type="submit" class="btn btn-primary" value="S'inscrire !" />
+			<input name="username" type="text" class="form-control input-sm" placeholder="Username" /><br />
+			<input name="password" type="password" class="form-control input-sm" placeholder="Password" /><br />
+			<input name="submit" type="submit" class="btn btn-primary" value="S'inscrire !" />
 		</form>
 	</div>
 </body>
