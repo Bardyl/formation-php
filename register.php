@@ -4,9 +4,9 @@
 
 	if(isset($_POST['submit']))
 	{
-		if(isset($_POST['username']) && !empty($_POST['username']))
+		if(!empty($_POST['username']))
 		{
-			if(isset($_POST['password']) && !empty($_POST['password']) && isset($_POST['password-check']) && !empty($_POST['password-check']))
+			if(!empty($_POST['password']) && !empty($_POST['password-check']))
 			{
 				if($_POST['password'] === $_POST['password-check'])
 				{
